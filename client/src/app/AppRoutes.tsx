@@ -1,9 +1,8 @@
 import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import LoginPage from '../pages/login'
-import AdminDashboard from '../pages/admin'
-import ManagerDashboard from '../pages/manager'
-import DeveloperDashboard from '../pages/developer'
+import { LoginPage } from '../features/auth/pages'
+import { AdminDashboard, ManagerDashboard, DeveloperDashboard } from '../features/Dashboard/pages'
+import { CreateUser, GetAllUsers,EditUser } from '../features/Users/pages'
 import PrivateRoute from './PrivateRoute'
 import { useAppSelector } from '../hooks/useAppSelector'
 
@@ -26,6 +25,9 @@ const AppRoutes: React.FC = () => {
       {/* Protected Routes specific to roles */}
       <Route element={<PrivateRoute allowedRoles={['admin']} />}>
         <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/admin/create-user" element={<CreateUser />} />
+        <Route path="/admin/users" element={<GetAllUsers />} />
+        <Route path="/admin/users/:id/edit" element={<EditUser />} />
       </Route>
 
       <Route element={<PrivateRoute allowedRoles={['manager']} />}>

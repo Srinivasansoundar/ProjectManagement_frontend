@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAppSelector } from '../../hooks/useAppSelector'
-import { LoginForm } from '../../features/auth'
-import AuthLayout from '../../layouts/AuthLayout'
+import { useAppSelector } from '../../../hooks/useAppSelector'
+import { LoginForm } from '../'
+import AuthLayout from '../../../layouts/AuthLayout'
 
 const LoginPage: React.FC = () => {
   const { user } = useAppSelector((state) => state.auth)

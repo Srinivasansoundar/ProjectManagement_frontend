@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { AuthState, User } from '../types'
 import { AUTH_KEYS } from '../../../config/constant'
@@ -19,6 +19,21 @@ const initialState: AuthState = {
   user: user,
 }
 
+// Create async thunk for logout
+export const logoutAsync = createAsyncThunk(
+  'auth/logoutAsync',
+  async (_, { rejectWithValue }) => {
+    try {
+      await authService.logout()
+      return true
+    } catch (error) {
+      console.error("Logout API error:", error)
+      // Don't reject - still clear local state even if API fails
+      return true
+    }
+  }
+)
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -28,13 +43,18 @@ const authSlice = createSlice({
     },
     logout: (state) => {
       state.user = null
-      // Attempt server logout, fire and forget
-      authService.logout().catch(console.error)
-      
       localStorage.removeItem(AUTH_KEYS.TOKEN)
       localStorage.removeItem(AUTH_KEYS.REFRESH_TOKEN)
       localStorage.removeItem(AUTH_KEYS.USER)
     }
+  },
+  extraReducers: (builder) => {
+    builder.addCase(logoutAsync.fulfilled, (state) => {
+      state.user = null
+      localStorage.removeItem(AUTH_KEYS.TOKEN)
+      localStorage.removeItem(AUTH_KEYS.REFRESH_TOKEN)
+      localStorage.removeItem(AUTH_KEYS.USER)
+    })
   }
 })
 
