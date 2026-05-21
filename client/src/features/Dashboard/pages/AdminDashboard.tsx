@@ -4,7 +4,7 @@ import { useAppSelector } from '../../../hooks/useAppSelector'
 import { useDispatch } from 'react-redux'
 import type { AppDispatch } from '../../../app/store'
 import { logoutAsync } from '../../auth/slices/authSlice'
-import { LogOut, UserPlus, Users } from 'lucide-react'
+import { LogOut, UserPlus, Users, FolderPlus, FolderOpen } from 'lucide-react'
 
 const AdminDashboard: React.FC = () => {
   const { user } = useAppSelector((state) => state.auth)
@@ -69,6 +69,41 @@ const AdminDashboard: React.FC = () => {
             </button>
           </div>
 
+          <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="p-3 bg-purple-100 rounded-lg">
+                <FolderPlus size={24} className="text-purple-600" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900">Create Project</h3>
+                <p className="text-sm text-gray-600">Start a new project</p>
+              </div>
+            </div>
+            <button
+              onClick={() => navigate('/admin/create-project')}
+              className="w-full mt-4 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-lg transition-colors"
+            >
+              Create New Project
+            </button>
+          </div>
+
+          <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="p-3 bg-indigo-100 rounded-lg">
+                <FolderOpen size={24} className="text-indigo-600" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900">View Projects</h3>
+                <p className="text-sm text-gray-600">Manage and view all projects</p>
+              </div>
+            </div>
+            <button
+              onClick={() => navigate('/admin/projects')}
+              className="w-full mt-4 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition-colors"
+            >
+              View All Projects
+            </button>
+          </div>
           
         </div>
       </div>

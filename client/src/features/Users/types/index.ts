@@ -8,6 +8,7 @@ export interface User{
 }
 export interface UserResponse{
     id:string
+    name:string
     email:string
     role:UserRole
 }

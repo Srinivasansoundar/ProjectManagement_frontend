@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Trash2, Edit2, Loader } from 'lucide-react'
+import { Trash2, Edit2, Loader, ArrowLeft } from 'lucide-react'
 import userService from '../../Dashboard/services/userService'
 import { useNavigate } from 'react-router-dom'
 interface User {
@@ -66,8 +66,13 @@ const GetAllUsers: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 p-8">
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-8">
+      <div className="max-w-6xl mx-auto">        <button
+          onClick={() => navigate('/admin')}
+          className="mb-6 flex items-center gap-2 px-4 py-2 text-gray-700 bg-white hover:bg-gray-100 rounded-lg transition-colors border border-gray-200"
+        >
+          <ArrowLeft size={18} />
+          Back
+        </button>        <div className="mb-8">
           <h1 className="text-4xl font-bold text-gray-900">User Management</h1>
           <p className="text-gray-600 mt-2">View and manage all system users</p>
         </div>

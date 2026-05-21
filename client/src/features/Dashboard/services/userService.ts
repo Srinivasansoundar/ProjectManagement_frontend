@@ -1,4 +1,4 @@
-import axiosInstance from '../../../lib/axios'
+import axiosInstance from '../../../lib/auth'
 
 interface CreateUserPayload {
   name: string

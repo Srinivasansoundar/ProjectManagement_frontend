@@ -3,14 +3,20 @@ import { useAppSelector } from '../../../hooks/useAppSelector'
 import { useDispatch } from 'react-redux'
 import type { AppDispatch } from '../../../app/store'
 import { logoutAsync } from '../../auth/slices/authSlice'
-import { LogOut } from 'lucide-react'
+import { LogOut, CheckSquare } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
 const DeveloperDashboard: React.FC = () => {
   const { user } = useAppSelector((state) => state.auth)
   const dispatch = useDispatch<AppDispatch>()
+  const navigate = useNavigate()
 
   const handleLogout = async () => {
     await dispatch(logoutAsync())
+  }
+
+  const handleNavigateToTasks = () => {
+    navigate('/developer/tasks')
   }
 
   return (
@@ -30,9 +36,19 @@ const DeveloperDashboard: React.FC = () => {
           </button>
         </header>
 
-        <div className="bg-white p-10 rounded-2xl shadow-sm border border-gray-100 text-center">
-            <h2 className="text-xl font-semibold text-gray-700 mb-2">My Tasks</h2>
-            <p className="text-gray-500">Developer tickets and pull requests will be displayed here.</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <button
+            onClick={handleNavigateToTasks}
+            className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md hover:border-indigo-300 transition-all text-left"
+          >
+            <div className="flex items-center gap-4 mb-3">
+              <div className="p-3 bg-indigo-100 rounded-lg">
+                <CheckSquare size={24} className="text-indigo-600" />
+              </div>
+              <h2 className="text-xl font-semibold text-gray-900">My Tasks</h2>
+            </div>
+            <p className="text-gray-500">View and manage all tasks assigned to you</p>
+          </button>
         </div>
       </div>
     </div>

@@ -1,18 +1,18 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
-import CreateUserForm from '../components/CreateUserForm'
+import CreateProjectForm from '../components/CreateProjectForm'
 
-const CreateUser: React.FC = () => {
+const CreateProject: React.FC = () => {
   const navigate = useNavigate()
   
   const handleSuccess = () => {
-    console.log('User created successfully')
-    navigate('/admin/users')
+    console.log('Project created successfully')
+    navigate('/admin/projects')
   }
 
   const handleError = (error: string) => {
-    console.error('Error creating user:', error)
+    console.error('Error creating project:', error)
   }
 
   return (
@@ -26,14 +26,14 @@ const CreateUser: React.FC = () => {
           Back
         </button>
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900">User Management</h1>
-          <p className="text-gray-600 mt-2">Create and manage system users</p>
+          <h1 className="text-4xl font-bold text-gray-900">Project Management</h1>
+          <p className="text-gray-600 mt-2">Create and manage your projects</p>
         </div>
 
-        <CreateUserForm onSuccess={handleSuccess} onError={handleError} />
+        <CreateProjectForm onSuccess={handleSuccess} onError={handleError} />
       </div>
     </div>
   )
 }
 
-export default CreateUser
+export default CreateProject

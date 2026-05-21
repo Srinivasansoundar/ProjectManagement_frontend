@@ -1,4 +1,4 @@
-import axiosInstance from '../../../lib/axios'
+import axiosInstance from '../../../lib/auth'
 import type { AuthResponse, LoginCredentials } from '../types'
 
 const API_URLs = {
@@ -11,7 +11,7 @@ const authService = {
     const response = await axiosInstance.post(API_URLs.LOGIN, credentials)
     return response.data
   },
-  
+
   logout: async (): Promise<void> => {
     await axiosInstance.post(API_URLs.LOGOUT)
   }
