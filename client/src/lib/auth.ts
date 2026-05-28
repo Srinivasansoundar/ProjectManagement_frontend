@@ -2,6 +2,7 @@ import axios from 'axios'
 import { ENV } from '../config/env'
 import { AUTH_KEYS } from '../config/constant'
 
+// axios.create() creates a reusable Axios object with predefined configuration.
 const axiosInstance = axios.create({
     baseURL: ENV.API_URL,
     headers: {

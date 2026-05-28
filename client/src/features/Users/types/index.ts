@@ -6,6 +6,12 @@ export interface User{
     role:UserRole
     created_by:string
 }
+export interface CreateUserPayload{
+    name:string
+    email:string
+    password:string
+    role:UserRole
+}
 export interface UserResponse{
     id:string
     name:string

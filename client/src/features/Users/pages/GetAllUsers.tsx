@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Trash2, Edit2, Loader, ArrowLeft } from 'lucide-react'
-import userService from '../../Dashboard/services/userService'
+// import userService from '../../Dashboard/services/userService'
+import userService from '../services/userServices'
 import { useNavigate } from 'react-router-dom'
 interface User {
   id: string
@@ -41,7 +42,7 @@ const GetAllUsers: React.FC = () => {
     setDeletingId(userId)
     try {
       // Call delete endpoint when available
-      // await userService.deleteUser(userId)
+      await userService.deleteUser(userId)
       setUsers(users.filter(user => user.id !== userId))
     } catch (err: any) {
       const errorMsg = err.response?.data?.detail || err.message || 'Failed to delete user'
